@@ -14,6 +14,9 @@ function handleButtonClick(event) {
     else if (event.target.classList.contains("operator")) {
         equationDiv.textContent += event.target.textContent
     }
+    if (event.target.classList.contains("AC")) {
+        equationDiv.textContent = ""
+    }
 }
 
 function operate(firstOperand, sign, secondOperand) {
