@@ -14,8 +14,12 @@ function handleButtonClick(event) {
     else if (event.target.classList.contains("operator")) {
         equationDiv.textContent += event.target.textContent
     }
-    if (event.target.classList.contains("AC")) {
+    else if (event.target.classList.contains("AC")) {
         equationDiv.textContent = ""
+    }
+    else if (event.target.classList.contains("DEL")) {
+        equationLength = equationDiv.textContent.length
+        equationDiv.textContent = equationDiv.textContent.slice(0, -1)
     }
 }
 
