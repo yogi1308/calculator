@@ -26,6 +26,36 @@ function handleButtonClick(event) {
             equationDiv.textContent += event.target.textContent
         }
     }
+    else if (event.target.classList.contains("brackets")) {
+        if (!equationDiv.textContent.includes("(") && !equationDiv.textContent.includes(")")) {
+            equationDiv.textContent += "("
+        }
+        else {
+            determineBrackets(equationDiv)
+        }
+    }
+}
+
+function determineBrackets(equationDiv) {
+    openBrackets = 0
+    closeBrackets = 0
+    for (i = 0; i < equationDiv.textContent.length; ++i){
+        if (equationDiv.textContent.charAt(i) == "(") {
+            ++openBrackets
+        }
+        else if (equationDiv.textContent.charAt(i) == ")") {
+            ++closeBrackets
+        }
+    }
+    if (openBrackets > closeBrackets) {
+        equationDiv.textContent += ")"
+    }
+    else if (closeBrackets > openBrackets) {
+        equationDiv.textContent += "("
+    }
+    else if (openBrackets == closeBrackets) {
+        equationDiv.textContent += "("
+    }
 }
 
 function operate(firstOperand, sign, secondOperand) {
