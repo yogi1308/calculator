@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/vcr-osd-mono');
+                
 body {
     display: flex;
     align-items: center;
@@ -17,11 +19,27 @@ body {
 }
 
 .screen {
-    min-height: 130px;
+    min-height: 90px;
     background-color: rgb(112, 117, 122);
     border-radius: 15px;
     margin-bottom: 5px;
     margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'VCR OSD Mono';
+}
+
+.equation {
+    font-size:xx-large;
+    font-weight: 500;
+}
+
+.answer {
+    align-self: flex-end;
+    font-size:xxx-large;
+    font-weight: 500;
 }
 
 button {
