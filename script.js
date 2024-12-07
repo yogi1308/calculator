@@ -30,10 +30,14 @@ function handleButtonClick(event) {
         if (!equationDiv.textContent.includes("(") && !equationDiv.textContent.includes(")")) {
             equationDiv.textContent += "("
         }
+        else if (equationDiv.textContent.at(- 1) == "(") {
+            equationDiv.textContent += "("
+        }
         else {
             determineBrackets(equationDiv)
         }
     }
+
 }
 
 function determineBrackets(equationDiv) {

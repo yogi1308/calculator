@@ -20,6 +20,10 @@ body {
 
 .screen {
     min-height: 90px;
+    max-width: 242px;
+    overflow: auto;
+    direction: rtl;
+    text-align: left;
     background-color: rgb(112, 117, 122);
     border-radius: 15px;
     margin-bottom: 5px;
