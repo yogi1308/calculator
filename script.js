@@ -1,10 +1,17 @@
+const buttons = document.querySelectorAll("button")
+attachEventListener()
 
 
+function attachEventListener() {
+    buttons.forEach(button => button.addEventListener("click", handleButtonClick))
+}
 
-
-
-
-
+function handleButtonClick(event) {
+    const equationDiv = document.querySelector(".equation");
+    if (event.target.classList.contains("num")) {
+        equationDiv.textContent += event.target.textContent
+    }
+}
 
 function operate(firstOperand, sign, secondOperand) {
     switch (sign) {
