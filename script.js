@@ -11,6 +11,9 @@ function handleButtonClick(event) {
     if (event.target.classList.contains("num")) {
         equationDiv.textContent += event.target.textContent
     }
+    else if (event.target.classList.contains("operator")) {
+        equationDiv.textContent += event.target.textContent
+    }
 }
 
 function operate(firstOperand, sign, secondOperand) {
