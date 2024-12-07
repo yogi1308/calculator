@@ -21,6 +21,11 @@ function handleButtonClick(event) {
         equationLength = equationDiv.textContent.length
         equationDiv.textContent = equationDiv.textContent.slice(0, -1)
     }
+    else if (event.target.classList.contains("point")) {
+        if (!equationDiv.textContent.includes(".")) {
+            equationDiv.textContent += event.target.textContent
+        }
+    }
 }
 
 function operate(firstOperand, sign, secondOperand) {
