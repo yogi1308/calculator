@@ -16,16 +16,7 @@ function handleButtonClick(event) {
         equationDiv.textContent += event.target.textContent
     }
     else if (event.target.classList.contains("operator")) {
-        if (equationDiv.textContent.includes("x", "+", "-", "÷")) {
-            operatorIndex = equationDiv.textContent.indexOf(operator)
-            secondOperand = equationDiv.textContent.slice(operatorIndex, equationDiv.textContent.length)
-            answerDiv.textContent = operate(firstOperand, operator, secondOperand)
-        }
-        else {
-            firstOperand = equationDiv.textContent
-            operator = event.target,textContent
-            equationDiv.textContent += event.target.textContent
-        }
+        equationDiv.textContent += event.target.textContent
     }
     else if (event.target.classList.contains("AC")) {
         equationDiv.textContent = ""
@@ -40,43 +31,10 @@ function handleButtonClick(event) {
             equationDiv.textContent += event.target.textContent
         }
     }
-    else if (event.target.classList.contains("brackets")) {
-        if (!equationDiv.textContent.includes("(") && !equationDiv.textContent.includes(")")) {
-            equationDiv.textContent += "("
-        }
-        else if (equationDiv.textContent.at(- 1) == "(") {
-            equationDiv.textContent += "("
-        }
-        else {
-            determineBrackets(equationDiv)
-        }
-    }
     else if (event.target.classList.contains("equals")) {
         answerDiv.textContent = operate(equationDiv.textContent)
     }
 
-}
-
-function determineBrackets(equationDiv) {
-    openBrackets = 0
-    closeBrackets = 0
-    for (i = 0; i < equationDiv.textContent.length; ++i){
-        if (equationDiv.textContent.charAt(i) == "(") {
-            ++openBrackets
-        }
-        else if (equationDiv.textContent.charAt(i) == ")") {
-            ++closeBrackets
-        }
-    }
-    if (openBrackets > closeBrackets) {
-        equationDiv.textContent += ")"
-    }
-    else if (closeBrackets > openBrackets) {
-        equationDiv.textContent += "("
-    }
-    else if (openBrackets == closeBrackets) {
-        equationDiv.textContent += "("
-    }
 }
 
 function operate(equation) {
