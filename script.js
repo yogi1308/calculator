@@ -61,11 +61,17 @@ function handleOperatorClicked(input) {
         hist.textContent = firstOperand + operater
     }
     else if (hist.textContent.length > 0) {
-        mainScreen.textContent = operate(firstOperand, operater, secondOperand)
-        hist.textContent = mainScreen.textContent + input
-        firstOperand = mainScreen.textContent
-        operater = input
-        secondOperand = ""
+        answer = operate(firstOperand, operater, secondOperand)
+        if (answer == "Infinity" || answer == "-Infinity") {
+            alert("Are you DUMB! Why are you dividing by ZERO!!")
+        }
+        else {
+            mainScreen.textContent = answer
+            hist.textContent = mainScreen.textContent + input
+            firstOperand = mainScreen.textContent
+            operater = input
+            secondOperand = ""
+    }
     }
     else {
         firstOperand = mainScreen.textContent
@@ -79,11 +85,17 @@ function handleEqualsClicked() {
         return
     }
     else {
-        const hist = document.querySelector(".hist");
-        const mainScreen = document.querySelector(".mainScreen")
-        hist.textContent = firstOperand + operater + secondOperand + "="
-        mainScreen.textContent = operate(firstOperand, operater, secondOperand)
-        secondOperand = ""
+        answer = operate(firstOperand, operater, secondOperand)
+        if (answer == "Infinity" || answer == "-Infinity") {
+            alert("Are you DUMB! Why are you dividing by ZERO!!")
+        }
+        else {
+            const hist = document.querySelector(".hist");
+            const mainScreen = document.querySelector(".mainScreen")
+            hist.textContent = firstOperand + operater + secondOperand + "="
+            mainScreen.textContent = operate(firstOperand, operater, secondOperand)
+            secondOperand = ""
+        }
     }
 }
 

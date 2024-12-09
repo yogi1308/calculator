@@ -19,7 +19,7 @@ body {
 }
 
 .screen {
-    min-height: 90px;
+    min-height: 80px;
     max-width: 242px;
     overflow: auto;
     text-align: right;
@@ -35,7 +35,7 @@ body {
 }
 
 .hist {
-    font-size:xx-large;
+    font-size:x-large;
     font-weight: 500;
 }
 
