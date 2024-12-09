@@ -54,7 +54,8 @@ function handleButtonClick(event) {
         }
     }
     else if (event.target.classList.contains("equals")) {
-        mainScreen.textContent = operate(hist.textContent)
+        hist.textContent = firstOperand + operater + secondOperand
+        mainScreen.textContent = operate(firstOperand, operater, secondOperand)
     }
 
 }
