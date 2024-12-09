@@ -24,7 +24,11 @@ function handleButtonClick(event) {
     }
     else if (event.target.classList.contains("operator")) {
         if (hist.textContent.length > 0) {
-            hist.textContent = operate(firstOperand, operater, secondOperand)
+            mainScreen.textContent = operate(firstOperand, operater, secondOperand)
+            hist.textContent = mainScreen.textContent + event.target.textContent
+            firstOperand = mainScreen.textContent
+            operater = event.target.textContent
+            secondOperand = ""
         }
         else {
             firstOperand = mainScreen.textContent
@@ -61,7 +65,7 @@ function operate(firstOperand, sign, secondOperand) {
             return add(firstOperand, secondOperand)
         case '-':
             return subtract(firstOperand, secondOperand)
-        case '*':
+        case '×':
             return multiply(firstOperand, secondOperand)
         case '÷':
             return divide(firstOperand, secondOperand)
