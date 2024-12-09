@@ -77,20 +77,32 @@ function operate(firstOperand, sign, secondOperand) {
 
 function add(x, y) {
     num = parseFloat(x) + parseFloat(y)
-    return num.toFixed(2)
+    if (num.toString().length > 6) {
+        num = parseFloat(num).toExponential(3)
+    }
+    return num 
 }
 
 function subtract(x, y) {
     num = parseFloat(x) - parseFloat(y)
-    return num.toFixed(2)
+    if (num.toString().length > 6) {
+        num = parseFloat(num).toExponential(3)
+    }
+    return num
 }
 
 function multiply(x, y) {
     num = parseFloat(x) * parseFloat(y)
-    return num.toFixed(2)
+    if (num.toString().length > 6) {
+        num = parseFloat(num).toExponential(3)
+    }
+    return num
 }
 
 function divide(x, y) {
     num = parseFloat(x) / parseFloat(y)
-    return num.toFixed(2)
+    if (num.toString().length > 6) {
+        num = parseFloat(num).toExponential(3)
+    }
+    return num
 }
