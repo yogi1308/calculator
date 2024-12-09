@@ -17,13 +17,22 @@ function handleButtonClick(event) {
         if (hist.textContent.length == 0) {
             mainScreen.textContent += event.target.textContent
         }
+        else if (hist.textContent.includes("=")) {
+            mainScreen.textContent += event.target.textContent
+            firstOperand = mainScreen
+        }
         else if (hist.textContent.length > 0) {
             secondOperand += event.target.textContent
             mainScreen.textContent = secondOperand
         }
     }
     else if (event.target.classList.contains("operator")) {
-        if (hist.textContent.length > 0) {
+        if (hist.textContent.includes("=")) {
+            firstOperand = mainScreen.textContent
+            operater = event.target.textContent
+            hist.textContent = firstOperand + operater
+        }
+        else if (hist.textContent.length > 0) {
             mainScreen.textContent = operate(firstOperand, operater, secondOperand)
             hist.textContent = mainScreen.textContent + event.target.textContent
             firstOperand = mainScreen.textContent
@@ -55,8 +64,9 @@ function handleButtonClick(event) {
         }
     }
     else if (event.target.classList.contains("equals")) {
-        hist.textContent = firstOperand + operater + secondOperand
+        hist.textContent = firstOperand + operater + secondOperand + "="
         mainScreen.textContent = operate(firstOperand, operater, secondOperand)
+        secondOperand = ""
     }
 
 }
