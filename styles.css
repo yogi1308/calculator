@@ -34,12 +34,12 @@ body {
     font-family: 'VCR OSD Mono';
 }
 
-.equation {
+.hist {
     font-size:xx-large;
     font-weight: 500;
 }
 
-.answer {
+.mainScreen {
     align-self: flex-end;
     font-size:xxx-large;
     font-weight: 500;

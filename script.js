@@ -1,3 +1,6 @@
+firstOperand = ""
+operater = ""
+secondOperand = ""
 const buttons = document.querySelectorAll("button")
 attachEventListener()
 
@@ -7,70 +10,77 @@ function attachEventListener() {
 }
 
 function handleButtonClick(event) {
-    const equationDiv = document.querySelector(".equation");
-    const answerDiv = document.querySelector(".answer")
-    firstOperand = ""
-    operator = ""
-    secondOperand = ""
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+
     if (event.target.classList.contains("num")) {
-        equationDiv.textContent += event.target.textContent
+        if (hist.textContent.length == 0) {
+            mainScreen.textContent += event.target.textContent
+        }
+        else if (hist.textContent.length > 0) {
+            secondOperand += event.target.textContent
+            mainScreen.textContent = secondOperand
+        }
     }
     else if (event.target.classList.contains("operator")) {
-        equationDiv.textContent += event.target.textContent
+        if (hist.textContent.length > 0) {
+            hist.textContent = operate(firstOperand, operater, secondOperand)
+        }
+        else {
+            firstOperand = mainScreen.textContent
+            operater = event.target.textContent
+            hist.textContent = mainScreen.textContent + event.target.textContent
+        }
     }
     else if (event.target.classList.contains("AC")) {
-        equationDiv.textContent = ""
-        answerDiv.textContent = ""
+        hist.textContent = ""
+        mainScreen.textContent = ""
+        firstOperand = ""
+        secondOperand = ""
+        operater = ""
     }
     else if (event.target.classList.contains("DEL")) {
-        equationLength = equationDiv.textContent.length
-        equationDiv.textContent = equationDiv.textContent.slice(0, -1)
+        mainScreen.textContent = mainScreen.textContent.slice(0, -1)
+        firstOperand = ""
+        secondOperand = ""
     }
     else if (event.target.classList.contains("point")) {
-        if (!equationDiv.textContent.includes(".")) {
-            equationDiv.textContent += event.target.textContent
+        if (!hist.textContent.includes(".")) {
+            mainScreen.textContent += event.target.textContent
         }
     }
     else if (event.target.classList.contains("equals")) {
-        answerDiv.textContent = operate(equationDiv.textContent)
+        mainScreen.textContent = operate(hist.textContent)
     }
 
 }
 
-function operate(equation) {
-    
+function operate(firstOperand, sign, secondOperand) {
+    switch (sign) {
+        case '+':
+            return add(firstOperand, secondOperand)
+        case '-':
+            return subtract(firstOperand, secondOperand)
+        case '*':
+            return multiply(firstOperand, secondOperand)
+        case '÷':
+            return divide(firstOperand, secondOperand)
+
+    }
 }
 
-// function operate(firstOperand, sign, secondOperand) {
-//     switch (sign) {
-//         case '+':
-//             add(firstOperand, secondOperand)
-//             break
-//         case '-':
-//             subtract(firstOperand, secondOperand)
-//             break
-//         case '*':
-//             multiply(firstOperand, secondOperand)
-//             break
-//         case '/':
-//             divide(firstOperand, secondOperand)
-//             break
-
-//     }
-// }
-
 function add(x, y) {
-    return x + y
+    return parseFloat(x) + parseFloat(y)
 }
 
 function subtract(x, y) {
-    return x - y
+    return parseFloat(x) - parseFloat(y)
 }
 
 function multiply(x, y) {
-    return x * y
+    return parseFloat(x) * parseFloat(y)
 }
 
 function divide(x, y) {
-    return x / y
+    return parseFloat(x) / parseFloat(y)
 }
