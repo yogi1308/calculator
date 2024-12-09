@@ -58,7 +58,24 @@ button {
     margin-bottom: 4px;
 }
 
-.acRow button, .x, .subtract,  .add, .equals, .multiply{
+.operator{
     background-color: rgb(112, 117, 122);
 }
 
+.delete-buttons {
+    margin: 0;
+    display: flex;
+    gap: 0;
+    justify-content: space-between;
+}
+
+.AC, .DEL {
+    background-color: rgb(177, 13, 13);
+    width: 124px;
+}
+
+.equals {
+    background-color: rgb(174, 203, 250);
+    color: black;
+    font-weight: bold;
+}
