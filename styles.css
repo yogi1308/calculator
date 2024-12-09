@@ -21,7 +21,9 @@ body {
 .screen {
     min-height: 80px;
     max-width: 242px;
-    overflow: auto;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
     text-align: right;
     background-color: rgb(112, 117, 122);
     border-radius: 15px;
@@ -32,16 +34,19 @@ body {
     flex-direction: column;
     justify-content: space-between;
     font-family: 'VCR OSD Mono';
+    display: block;
 }
 
 .hist {
+    text-align: right;
     font-size:x-large;
     font-weight: 500;
 }
 
 .mainScreen {
+    text-align: right;
     align-self: flex-end;
-    font-size:xxx-large;
+    font-size:xx-large;
     font-weight: 500;
 }
 

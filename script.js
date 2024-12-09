@@ -61,8 +61,7 @@ function handleOperatorClicked(input) {
         hist.textContent = firstOperand + operater
     }
     else if (hist.textContent.length > 0) {
-        answer = operate(firstOperand, operater, secondOperand)
-        if (answer == "Infinity" || answer == "-Infinity") {
+        if (secondOperand == 0) {
             alert("Are you DUMB! Why are you dividing by ZERO!!")
         }
         else {
@@ -85,8 +84,7 @@ function handleEqualsClicked() {
         return
     }
     else {
-        answer = operate(firstOperand, operater, secondOperand)
-        if (answer == "Infinity" || answer == "-Infinity") {
+        if (secondOperand == 0) {
             alert("Are you DUMB! Why are you dividing by ZERO!!")
         }
         else {
@@ -120,7 +118,7 @@ function handleBackspaceClicked() {
 function handlePointClicked(input) {
     const hist = document.querySelector(".hist");
     const mainScreen = document.querySelector(".mainScreen")
-    if (!hist.textContent.includes(".")) {
+    if (!mainScreen.textContent.includes(".")) {
         mainScreen.textContent += input
         secondOperand = mainScreen.textContent
     }
@@ -175,32 +173,44 @@ function operate(firstOperand, sign, secondOperand) {
 
 function add(x, y) {
     num = parseFloat(x) + parseFloat(y)
-    if (num.toString().length > 6) {
-        num = parseFloat(num).toExponential(3)
+    if (num.toString().includes(".")) {
+        return parseFloat(num).toFixed(4)
     }
-    return num 
+    else if (num.toString().length > 12) {
+        return parseFloat(num).toExponential(2)
+    }
+    return num
 }
 
 function subtract(x, y) {
     num = parseFloat(x) - parseFloat(y)
-    if (num.toString().length > 6) {
-        num = parseFloat(num).toExponential(3)
+    if (num.toString().includes(".")) {
+        return parseFloat(num).toFixed(4)
+    }
+    else if (num.toString().length > 12) {
+        return parseFloat(num).toExponential(2)
     }
     return num
 }
 
 function multiply(x, y) {
     num = parseFloat(x) * parseFloat(y)
-    if (num.toString().length > 6) {
-        num = parseFloat(num).toExponential(3)
+    if (num.toString().includes(".")) {
+        return parseFloat(num).toFixed(4)
+    }
+    else if (num.toString().length > 12) {
+        return parseFloat(num).toExponential(2)
     }
     return num
 }
 
 function divide(x, y) {
     num = parseFloat(x) / parseFloat(y)
-    if (num.toString().length > 6) {
-        num = parseFloat(num).toExponential(3)
+    if (num.toString().includes(".")) {
+        return parseFloat(num).toFixed(4)
+    }
+    else if (num.toString().length > 12) {
+        return parseFloat(num).toExponential(2)
     }
     return num
 }
