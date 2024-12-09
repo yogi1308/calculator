@@ -51,6 +51,7 @@ function handleButtonClick(event) {
     else if (event.target.classList.contains("point")) {
         if (!hist.textContent.includes(".")) {
             mainScreen.textContent += event.target.textContent
+            secondOperand = mainScreen.textContent
         }
     }
     else if (event.target.classList.contains("equals")) {
@@ -75,17 +76,21 @@ function operate(firstOperand, sign, secondOperand) {
 }
 
 function add(x, y) {
-    return parseFloat(x) + parseFloat(y)
+    num = parseFloat(x) + parseFloat(y)
+    return num.toFixed(2)
 }
 
 function subtract(x, y) {
-    return parseFloat(x) - parseFloat(y)
+    num = parseFloat(x) - parseFloat(y)
+    return num.toFixed(2)
 }
 
 function multiply(x, y) {
-    return parseFloat(x) * parseFloat(y)
+    num = parseFloat(x) * parseFloat(y)
+    return num.toFixed(2)
 }
 
 function divide(x, y) {
-    return parseFloat(x) / parseFloat(y)
+    num = parseFloat(x) / parseFloat(y)
+    return num.toFixed(2)
 }
