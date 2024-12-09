@@ -7,69 +7,145 @@ attachEventListener()
 
 function attachEventListener() {
     buttons.forEach(button => button.addEventListener("click", handleButtonClick))
+    document.addEventListener("keydown", handleKeyboard);
 }
 
 function handleButtonClick(event) {
+    input = handleInput(event)
     const hist = document.querySelector(".hist");
     const mainScreen = document.querySelector(".mainScreen")
 
     if (event.target.classList.contains("num")) {
-        if (hist.textContent.length == 0) {
-            mainScreen.textContent += event.target.textContent
-        }
-        else if (hist.textContent.includes("=")) {
-            mainScreen.textContent += event.target.textContent
-            firstOperand = mainScreen
-        }
-        else if (hist.textContent.length > 0) {
-            secondOperand += event.target.textContent
-            mainScreen.textContent = secondOperand
-        }
+        handleNumClicked(input)
     }
     else if (event.target.classList.contains("operator")) {
-        if (hist.textContent.includes("=")) {
-            firstOperand = mainScreen.textContent
-            operater = event.target.textContent
-            hist.textContent = firstOperand + operater
-        }
-        else if (hist.textContent.length > 0) {
-            mainScreen.textContent = operate(firstOperand, operater, secondOperand)
-            hist.textContent = mainScreen.textContent + event.target.textContent
-            firstOperand = mainScreen.textContent
-            operater = event.target.textContent
-            secondOperand = ""
-        }
-        else {
-            firstOperand = mainScreen.textContent
-            operater = event.target.textContent
-            hist.textContent = mainScreen.textContent + event.target.textContent
-        }
+        handleOperatorClicked(input)
     }
     else if (event.target.classList.contains("AC")) {
-        hist.textContent = ""
-        mainScreen.textContent = ""
-        firstOperand = ""
-        secondOperand = ""
-        operater = ""
+        handleDeleteClicked(input)
     }
     else if (event.target.classList.contains("DEL")) {
-        mainScreen.textContent = mainScreen.textContent.slice(0, -1)
-        firstOperand = ""
-        secondOperand = ""
+        handleBackspaceClicked(input)
     }
     else if (event.target.classList.contains("point")) {
-        if (!hist.textContent.includes(".")) {
-            mainScreen.textContent += event.target.textContent
-            secondOperand = mainScreen.textContent
-        }
+        handlePointClicked(input)
     }
     else if (event.target.classList.contains("equals")) {
+        handleEqualsClicked(input)
+    }
+
+}
+
+function handleNumClicked(input) {
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+    if (hist.textContent.length == 0) {
+        mainScreen.textContent += input
+    }
+    else if (hist.textContent.includes("=")) {
+        mainScreen.textContent += input
+        firstOperand = mainScreen
+    }
+    else if (hist.textContent.length > 0) {
+        secondOperand += input
+        mainScreen.textContent = secondOperand
+    }
+}
+
+function handleOperatorClicked(input) {
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+    if (hist.textContent.includes("=")) {
+        firstOperand = mainScreen.textContent
+        operater = input
+        hist.textContent = firstOperand + operater
+    }
+    else if (hist.textContent.length > 0) {
+        mainScreen.textContent = operate(firstOperand, operater, secondOperand)
+        hist.textContent = mainScreen.textContent + input
+        firstOperand = mainScreen.textContent
+        operater = input
+        secondOperand = ""
+    }
+    else {
+        firstOperand = mainScreen.textContent
+        operater = input
+        hist.textContent = mainScreen.textContent + input
+    }
+}
+
+function handleEqualsClicked() {
+    if (secondOperand == "" ) {
+        return
+    }
+    else {
+        const hist = document.querySelector(".hist");
+        const mainScreen = document.querySelector(".mainScreen")
         hist.textContent = firstOperand + operater + secondOperand + "="
         mainScreen.textContent = operate(firstOperand, operater, secondOperand)
         secondOperand = ""
     }
-
 }
+
+function handleDeleteClicked() {
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+    hist.textContent = ""
+    mainScreen.textContent = ""
+    firstOperand = ""
+    secondOperand = ""
+    operater = ""
+}
+
+function handleBackspaceClicked() {
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+    mainScreen.textContent = mainScreen.textContent.slice(0, -1)
+    firstOperand = ""
+    secondOperand = ""
+}
+
+function handlePointClicked(input) {
+    const hist = document.querySelector(".hist");
+    const mainScreen = document.querySelector(".mainScreen")
+    if (!hist.textContent.includes(".")) {
+        mainScreen.textContent += input
+        secondOperand = mainScreen.textContent
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function operate(firstOperand, sign, secondOperand) {
     switch (sign) {
@@ -115,4 +191,79 @@ function divide(x, y) {
         num = parseFloat(num).toExponential(3)
     }
     return num
+}
+
+
+
+
+
+
+
+
+
+
+
+function handleKeyboard(event) {
+    input = handleInput(event)
+    const key = event.key; 
+
+    switch (key) {
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '0':
+            handleNumClicked(input);
+            break;
+
+        case '*':
+        case '/':
+        case '+':
+        case '-':
+            handleOperatorClicked(input);
+            break;
+
+        case '.':
+            handlePointClicked(input);
+            break;
+
+        case '=':
+        case 'Enter': 
+            handleEqualsClicked();
+            break;
+
+        case 'Delete': 
+            handleDeleteClicked();
+            break;
+
+        case 'Backspace': 
+            handleBackspaceClicked();
+            break;
+
+        default:
+            break;
+    }
+}
+
+function handleInput(event) {
+    value = ""
+    if (event.type === 'click') {
+        value = event.target.textContent;
+    } else if (event.type === 'keydown') {
+        if (event.key == "*") {
+            value = "×"; 
+        }
+        else if (event.key == "/") {
+            value = "÷"
+        }
+        else {
+            value = event.key
+        }
+    }
+    return value;
 }
