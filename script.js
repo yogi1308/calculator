@@ -8,14 +8,28 @@ function attachEventListener() {
 
 function handleButtonClick(event) {
     const equationDiv = document.querySelector(".equation");
+    const answerDiv = document.querySelector(".answer")
+    firstOperand = ""
+    operator = ""
+    secondOperand = ""
     if (event.target.classList.contains("num")) {
         equationDiv.textContent += event.target.textContent
     }
     else if (event.target.classList.contains("operator")) {
-        equationDiv.textContent += event.target.textContent
+        if (equationDiv.textContent.includes("x", "+", "-", "÷")) {
+            operatorIndex = equationDiv.textContent.indexOf(operator)
+            secondOperand = equationDiv.textContent.slice(operatorIndex, equationDiv.textContent.length)
+            answerDiv.textContent = operate(firstOperand, operator, secondOperand)
+        }
+        else {
+            firstOperand = equationDiv.textContent
+            operator = event.target,textContent
+            equationDiv.textContent += event.target.textContent
+        }
     }
     else if (event.target.classList.contains("AC")) {
         equationDiv.textContent = ""
+        answerDiv.textContent = ""
     }
     else if (event.target.classList.contains("DEL")) {
         equationLength = equationDiv.textContent.length
@@ -36,6 +50,9 @@ function handleButtonClick(event) {
         else {
             determineBrackets(equationDiv)
         }
+    }
+    else if (event.target.classList.contains("equals")) {
+        answerDiv.textContent = operate(equationDiv.textContent)
     }
 
 }
@@ -62,23 +79,27 @@ function determineBrackets(equationDiv) {
     }
 }
 
-function operate(firstOperand, sign, secondOperand) {
-    switch (sign) {
-        case '+':
-            add(firstOperand, secondOperand)
-            break
-        case '-':
-            subtract(firstOperand, secondOperand)
-            break
-        case '*':
-            multiply(firstOperand, secondOperand)
-            break
-        case '/':
-            divide(firstOperand, secondOperand)
-            break
-
-    }
+function operate(equation) {
+    
 }
+
+// function operate(firstOperand, sign, secondOperand) {
+//     switch (sign) {
+//         case '+':
+//             add(firstOperand, secondOperand)
+//             break
+//         case '-':
+//             subtract(firstOperand, secondOperand)
+//             break
+//         case '*':
+//             multiply(firstOperand, secondOperand)
+//             break
+//         case '/':
+//             divide(firstOperand, secondOperand)
+//             break
+
+//     }
+// }
 
 function add(x, y) {
     return x + y
